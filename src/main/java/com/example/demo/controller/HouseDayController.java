@@ -19,7 +19,7 @@ public class HouseDayController {
     @Autowired
     private HouseDayServiceImpl houseDayService;
 
-    @RequestMapping(value = "/api/houseDayServices", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/houseDays", method = RequestMethod.GET)
     public ResponseEntity<Iterable<HouseDay>> listAllHouseDay() {
         Iterable<HouseDay> houseDays = houseDayService.findAll();
         if (houseDays == null) {
@@ -28,7 +28,7 @@ public class HouseDayController {
         return new ResponseEntity<Iterable<HouseDay>>(houseDays, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/houseDayServices/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/houseDays/{id}", method = RequestMethod.GET)
     public ResponseEntity<HouseDay> getHouseDay(@PathVariable("id") Date id) {
         HouseDay houseDay = houseDayService.findById(id);
         if (houseDay == null) {
@@ -37,13 +37,13 @@ public class HouseDayController {
         return new ResponseEntity<HouseDay>(houseDay, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/houseDayServices", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/houseDays", method = RequestMethod.POST)
     public ResponseEntity<Void> createHouseDay(@RequestBody HouseDay houseDay) {
         houseDayService.save(houseDay);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/api/houseDayServices/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/houseDays/{id}", method = RequestMethod.PUT)
     public ResponseEntity<HouseDay> updateHouseDay(@PathVariable("id") Date id, @RequestBody HouseDay houseDay) {
         HouseDay houseDay1 = houseDayService.findById(id);
 
@@ -57,7 +57,7 @@ public class HouseDayController {
         return new ResponseEntity<HouseDay>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/houseDayServices/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/houseDays/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<HouseDay> deleteHouseDay(@PathVariable("id") Date id) {
         HouseDay houseDay = houseDayService.findById(id);
         if (houseDay == null) {
