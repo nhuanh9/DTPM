@@ -2,10 +2,8 @@ package com.example.demo.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,4 +15,7 @@ public class Utilitie {
     private String name;
 
     private String description;
+
+    @ManyToMany
+    Set<House> houses;
 }

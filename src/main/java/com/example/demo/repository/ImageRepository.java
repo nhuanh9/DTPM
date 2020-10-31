@@ -1,4 +1,9 @@
 package com.example.demo.repository;
 
-public interface ImageRepository {
+import com.example.demo.model.House;
+import com.example.demo.model.Image;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ImageRepository extends JpaRepository<Image, Long> {
+    Iterable<Image> findAllByHouse(House house);
 }
