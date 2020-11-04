@@ -3,16 +3,19 @@ package com.example.demo.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 
-@Data
 @Entity
-public class HouseDay {
+@Data
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Date date;
+    private Long idComment;
 
-    private String status;
+    private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "id_account")
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name = "id_house")

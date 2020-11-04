@@ -50,6 +50,9 @@ public class OrderController {
         }
         order1.setBookingDate(order.getBookingDate());
         order1.setHouse(order.getHouse());
+        order1.setAccount(order.getAccount());
+        order1.setPersonName(order.getPersonName());
+        order1.setTelephoneNumer(order.getTelephoneNumer());
         order1.setStartDate(order.getStartDate());
         order1.setEndDate(order.getEndDate());
         orderService.save(order1);

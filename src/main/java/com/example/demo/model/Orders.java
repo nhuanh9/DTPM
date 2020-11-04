@@ -17,6 +17,12 @@ public class Orders {
     private Date startDate;
 
     private Date endDate;
+
+    private String personName;
+
+    private String account;
+
+    private String telephoneNumer;
     @ManyToOne
     @JoinColumn(name = "id_house")
     private House house;
