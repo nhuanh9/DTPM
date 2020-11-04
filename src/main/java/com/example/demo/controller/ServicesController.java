@@ -50,8 +50,6 @@ public class ServicesController {
             return new ResponseEntity<Services>(HttpStatus.NOT_FOUND);
         }
         services1.setName(services.getName());
-        services1.setStartTime(services.getStartTime());
-        services1.setEndTime(services.getEndTime());
         services1.setPrice(services.getPrice());
         services1.setDescription(services.getDescription());
 

@@ -16,7 +16,5 @@ public class HouseDay {
     @JoinColumn(name = "id_house")
     private House house;
 
-    @ManyToOne
-    @JoinColumn(name = "id_order")
-    private Orders orders;
+
 }

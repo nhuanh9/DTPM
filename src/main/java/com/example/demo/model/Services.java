@@ -17,10 +17,6 @@ public class Services {
 
     private String name;
 
-    private Date startTime;
-
-    private Date endTime;
-
     private Double price;
     
     private String description;

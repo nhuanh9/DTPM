@@ -12,10 +12,6 @@ public class OrderService {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long times;
 
-    private Date time;
-
-    private Double totalMoney;
-
     @ManyToOne
     @JoinColumn(name = "id_service")
     private Services services;

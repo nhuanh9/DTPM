@@ -2,10 +2,7 @@ package com.example.demo.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -15,21 +12,12 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOrder;
 
-    private String personOrderName;
-
-    private String telephoneNumber;
-
     private Date bookingDate;
 
-    private Date arrivalDate;
+    private Date startDate;
 
-    private Date dateGo;
-
-    private Double total;
-
-    private Boolean status;
-
-    private String evaluate;
-
-    private String account;
+    private Date endDate;
+    @ManyToOne
+    @JoinColumn(name = "id_house")
+    private House house;
 }

@@ -51,7 +51,6 @@ public class HouseDayController {
             return new ResponseEntity<HouseDay>(HttpStatus.NOT_FOUND);
         }
         houseDay1.setHouse(houseDay.getHouse());
-        houseDay1.setOrders(houseDay.getOrders());
 
         houseDayService.save(houseDay1);
         return new ResponseEntity<HouseDay>(HttpStatus.OK);

@@ -48,15 +48,10 @@ public class OrderController {
         if (order1 == null) {
             return new ResponseEntity<Orders>(HttpStatus.NOT_FOUND);
         }
-        order1.setPersonOrderName(order.getPersonOrderName());
-        order1.setTelephoneNumber(order.getTelephoneNumber());
         order1.setBookingDate(order.getBookingDate());
-        order1.setArrivalDate(order.getArrivalDate());
-        order1.setDateGo(order.getDateGo());
-        order1.setStatus(order.getStatus());
-        order1.setAccount(order.getAccount());
-        order1.setEvaluate(order.getEvaluate());
-        order1.setTotal(order.getTotal());
+        order1.setHouse(order.getHouse());
+        order1.setStartDate(order.getStartDate());
+        order1.setEndDate(order.getEndDate());
         orderService.save(order1);
         return new ResponseEntity<Orders>(HttpStatus.OK);
     }

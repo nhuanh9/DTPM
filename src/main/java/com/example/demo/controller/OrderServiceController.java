@@ -50,8 +50,6 @@ public class OrderServiceController {
         }
         orderService1.setOrders(orderService.getOrders());
         orderService1.setServices(orderService.getServices());
-        orderService1.setTime(orderService.getTime());
-        orderService1.setTotalMoney(orderService.getTotalMoney());
 
         orderServiceService.save(orderService1);
         return new ResponseEntity<OrderService>(HttpStatus.OK);
