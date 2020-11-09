@@ -50,7 +50,6 @@ public class CategoryHouseController {
         }
         categoryHouse1.setName(categoryHouse.getName());
         categoryHouse1.setDescription(categoryHouse.getDescription());
-
         categoryHouseService.save(categoryHouse1);
         return new ResponseEntity<CategoryHouse>(HttpStatus.OK);
     }
