@@ -22,7 +22,7 @@ public class Orders {
 
     private String account;
 
-    private String telephoneNumer;
+    private String telephoneNumber;
     @ManyToOne
     @JoinColumn(name = "id_house")
     private House house;

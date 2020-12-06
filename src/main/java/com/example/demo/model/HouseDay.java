@@ -19,4 +19,13 @@ public class HouseDay {
     @ManyToOne
     @JoinColumn(name = "id_house")
     private House house;
+
+    public HouseDay(Date date1, String s, House house) {
+        this.date = date1;
+        this.status = s;
+        this.house = house;
+    }
+
+    public HouseDay() {
+    }
 }
