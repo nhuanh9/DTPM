@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.model.HouseDay;
 import com.example.demo.model.Orders;
+import com.example.demo.model.Services;
 import com.example.demo.service.HouseDayService;
 import com.example.demo.service.impl.OrderServiceImpl;
+import com.example.demo.service.impl.ServicesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Calendar;
 import java.util.Date;
 
 @CrossOrigin("*")
@@ -19,7 +20,8 @@ import java.util.Date;
 public class OrderController {
     @Autowired
     private OrderServiceImpl orderService;
-
+    @Autowired
+    private ServicesServiceImpl servicesService;
     @Autowired
     private HouseDayService houseDayService;
     private long oneDay = 86400000;
@@ -44,13 +46,12 @@ public class OrderController {
 
     @RequestMapping(value = "/api/orders", method = RequestMethod.POST)
     public ResponseEntity<Void> addOrder(@RequestBody Orders order, UriComponentsBuilder ucBuilder) {
+        order.setHousePrice(getHousePrice(order));
+        order.setServicePrice(getServicePrice(order));
+        order.setTotalPrice(getTotalPrice(order));
         orderService.save(order);
-        Calendar cal = Calendar.getInstance();
-        Date date = cal.getTime();
-        long bookingTime = order.getBookingDate().getTime();
         long startDate = order.getStartDate().getTime();
         long endDate = order.getEndDate().getTime();
-        long currentTime = date.getTime();
         for (long i = startDate; i <= endDate; i += oneDay) {
             Date date1 = new Date(i);
             houseDayService.save(new HouseDay(date1, "1", order.getHouse()));
@@ -58,6 +59,25 @@ public class OrderController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/orders/{id}").buildAndExpand(order.getIdOrder()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+
+    private Double getServicePrice(Orders orders) {
+        Double price = Double.valueOf(0);
+        for (Services service :
+                orders.getServices()) {
+            service = servicesService.findById(service.getIdService());
+            price += service.getPrice();
+        }
+        return price;
+    }
+
+    private Double getHousePrice(Orders orders) {
+        Double price = (orders.getEndDate().getTime() - orders.getStartDate().getTime()) / oneDay * orders.getHouse().getPrice();
+        return price;
+    }
+
+    private Double getTotalPrice(Orders orders) {
+        return getHousePrice(orders) + getServicePrice(orders);
     }
 
     @RequestMapping(value = "/api/orders/{id}", method = RequestMethod.PUT)

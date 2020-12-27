@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
@@ -26,4 +27,11 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name = "id_house")
     private House house;
+
+    @ManyToMany
+    Set<Services> services;
+
+    private Double servicePrice;
+    private Double housePrice;
+    private Double totalPrice;
 }

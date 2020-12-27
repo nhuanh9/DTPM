@@ -33,6 +33,9 @@ public class House {
     @ManyToMany
     Set<Utilitie> utilities;
 
+    @Column(columnDefinition = "TEXT")
+    private String imageUrls;
+
     @JsonManagedReference
     @OneToMany(targetEntity = Image.class, mappedBy = "house", cascade = CascadeType.REMOVE)
     private List<Image> imageList;
