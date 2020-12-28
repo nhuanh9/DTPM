@@ -28,6 +28,7 @@ public class HouseController {
         if (houses == null) {
             return new ResponseEntity<Iterable<House>>(HttpStatus.NO_CONTENT);
         }
+        //push
         return new ResponseEntity<Iterable<House>>(houses, HttpStatus.OK);
     }
 
