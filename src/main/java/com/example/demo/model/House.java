@@ -33,6 +33,9 @@ public class House {
     @ManyToMany
     Set<Utilitie> utilities;
 
+    @ManyToMany
+    Set<Services> services;
+
     @Column(columnDefinition = "TEXT")
     private String imageUrls;
 
